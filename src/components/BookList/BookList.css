@@ -1,0 +1,22 @@
+.bookslist__table{
+    text-align: left;
+    border-collapse: collapse;
+}
+.bookslist__table td,
+.bookslist__table th{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.bookslist__input{
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 15px;
+
+}
+
+.bookslist__text{
+    margin: 20px auto;
+    font-size: 20px;
+    font-weight: 800;
+}
