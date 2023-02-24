@@ -16,7 +16,6 @@
 }
 
 .bookslist__table{
-    text-align: left;
     border-collapse: collapse;
     background-color: bisque;
     border: none;
@@ -24,22 +23,28 @@
     padding: 20px;
     margin: 20px;
 }
+
 .bookslist__table td{
     border: none;
     padding: 20px;
     margin: 20px;
-    border-radius: 20px;
-    min-width: 200px;
-   
+    min-width: 200px; 
+    background-color: rgb(247, 247, 247);
+    text-align: start;
 }
+
 .bookslist__table th{
     border: none;
+    border-bottom: 3px solid white;
     padding: 20px;
     margin: 20px;
     border-radius: 20px;
     color: white;
     text-align: center;
     font-size: 20px;
+}
+.bookslist__table img{
+    width: 100%;
 }
 .bookslist__input{
     margin: 30px auto;
@@ -69,6 +74,7 @@
     font-size: 20px;
     font-weight: 800;
 }
+
 .line{
     width: 80%;
     height: 3px;
