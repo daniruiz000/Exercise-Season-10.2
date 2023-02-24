@@ -29,7 +29,7 @@ const BookList = () => {
             });
     };
 
-    React.useEffect(()=>{(filterWithTime && filterWithTime.length >= 3 ) && callApi()}, [filterWithTime]);
+    React.useEffect(()=>{filterWithTime && filterWithTime.length >= 3 && callApi()}, [filterWithTime]);
 
     return (
 
@@ -39,9 +39,9 @@ const BookList = () => {
                 <input className='bookslist__input' type='text' onChange={(event) => setFilter(event.target.value)} value={filter} />
             </div>
 
-            {(filterWithTime.length < 3) && <p className='bookslist__nocharacters'>Introduce al menos tres caracteres...</p>}
+            {(filterWithTime.length < 3) && <p className='bookslist__text'>Introduce al menos tres caracteres...</p>}
             
-            {((visible === false) && (filterWithTime.length >= 3)) && <p className='bookslist__nobooks'>No hay libros</p>}
+            {((visible === false) && (filterWithTime.length >= 3)) && <p className='bookslist__text'>No hay libros</p>}
 
             {((visible === true) && (filterWithTime.length >= 3)) && <table className='bookslist__table'>
                     <thead>

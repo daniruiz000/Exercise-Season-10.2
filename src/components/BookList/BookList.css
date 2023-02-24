@@ -64,17 +64,6 @@
     font-weight: 800;
 }
 
-.bookslist__nobooks{
-    margin: 20px auto;
-    font-size: 20px;
-    font-weight: 800;
-}
-.bookslist__nocharacters{
-    margin: 20px auto;
-    font-size: 20px;
-    font-weight: 800;
-}
-
 .line{
     width: 80%;
     height: 3px;
