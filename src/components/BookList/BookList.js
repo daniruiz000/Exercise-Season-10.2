@@ -1,30 +1,33 @@
+import './BookList.css'
 import React from 'react'
 import { useDebounce } from 'use-debounce';
-import './BookList.css'
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
-
-
 
 const BookList = () => {
 
     const [booksList, setBooksList] = React.useState([]);
     const [filter, setFilter] = React.useState('');
+    const [visible, setVisible] = React.useState(false);
+
     const [filterWithTime] = useDebounce(filter, 1000);
 
+    const callApi = () => {
 
-    React.useEffect(() => {
+        fetch(API_URL + filterWithTime)
+            .then(response => response.json())
+            .then(data => {
 
-        if (filterWithTime && filterWithTime.length >= 3) {
+                if (data.totalItems){
+                    setBooksList(data.items);
+                    setVisible(true);
+                }else{
+                    setVisible(false);
+                }
+            });
+    };
 
-            fetch(API_URL + filterWithTime)
-                .then(response => response.json())
-                .then(data => {
-
-                    (data.totalItems === 0) ? setBooksList(booksList) : setBooksList(data.items)
-                })
-        }
-    }, [filterWithTime])
+    React.useEffect(()=>{(filterWithTime && filterWithTime.length >= 3 ) && callApi()}, [filterWithTime]);
 
     return (
 
@@ -33,12 +36,14 @@ const BookList = () => {
                 <p className='bookslist__text'>Buscador de libros</p>
                 <input className='bookslist__input' type='text' onChange={(event) => setFilter(event.target.value)} value={filter} />
             </div>
+
+            {(filterWithTime.length < 3) && <p>Introduce al menos tres caracteres...</p>}
             
-            {(filterWithTime.length < 3) ?
-                <p>Introduce al menos tres caracteres...</p>
-                : <table className='bookslist__table'>
+            {((visible === false) && (filterWithTime.length >= 3)) && <p>No hay libros</p>}
+
+            {((visible === true) && (filterWithTime.length >= 3)) && <table className='bookslist__table'>
                     <thead>
-                        <tr >
+                        <tr>
                             <th>Autores</th>
                             <th>Título</th>
                             <th>Descripción</th>
@@ -48,6 +53,7 @@ const BookList = () => {
                     <tbody>
 
                         {booksList.map(book => (
+
                             <tr key={book.id}>
                                 <td>{book.volumeInfo.authors || 'Sin autores'}</td>
                                 <td>{book.volumeInfo.title}</td>
@@ -57,11 +63,9 @@ const BookList = () => {
                         ))}
 
                     </tbody>
-                </table>
-            }
+                </table>}
         </div>
     )
 }
-
 
 export default BookList;
