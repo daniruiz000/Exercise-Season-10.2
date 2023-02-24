@@ -1,10 +1,10 @@
-import './BookList.css'
+import './BookList.css';
 import Book from '../Book/Book';
-import React from 'react'
+import React from 'react';
 import { useDebounce } from 'use-debounce';
 
 
-const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
+const API_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 const BookList = () => {
 
@@ -59,7 +59,7 @@ const BookList = () => {
                     </tbody>
                 </table>}
         </div>
-    )
-}
+    );
+};
 
 export default BookList;

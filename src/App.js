@@ -8,6 +8,6 @@ function App() {
       <BookList/>
     </div>
   );
-}
+};
 
 export default App;
